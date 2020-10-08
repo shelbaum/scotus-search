@@ -1,1 +1,1 @@
-web: gunicorn gettingstarted.wsgi --log-file -
+web: gunicorn scotus_search.wsgi --log-file -
