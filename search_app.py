@@ -48,4 +48,4 @@ def home():
 	return render_template('home.html', form=form, cases=cases, search_terms=search_terms)
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run()
