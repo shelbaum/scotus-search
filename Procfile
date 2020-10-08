@@ -1,1 +1,1 @@
-web: gunicorn wsgi:scotus-search --log-file -
+web: gunicorn wsgi:search_app --log-file -
