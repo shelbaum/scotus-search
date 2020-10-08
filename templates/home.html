@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Searching SCOTUS</title>
+</head>
+<body>
+	<h1>Search SCOTUS Opinions for SLS Mentions</h1>
+	<div>
+			<form method="POST" action="">
+				{{ form.hidden_tag() }}
+				<fieldset class="form-group">
+					<div class="form-group">
+						{{ form.start_date.label }}
+						{% if form.start_date.errors %}
+							{{ form.start_date }}
+							<div class="invalid-feedback">
+								{% for error in form.start_date.errors %}
+									<span> {{ error }} </span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.start_date }}
+						{% endif %}				
+					</div>
+					<div class="form-group">
+						{{ form.end_date.label }}
+						{% if form.end_date.errors %}
+							{{ form.end_date }}
+							<div class="invalid-feedback">
+								{% for error in form.end_date.errors %}
+									<span> {{ error }} </span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.end_date }}
+						{% endif %}
+					</div>
+				</fieldset>
+				<div class="form-group">
+					{{ form.submit }}
+				</div>
+			</form>
+	</div>
+	<ul>
+		{% for case in cases %}
+		<h4> Case name: <a href='{{ cases[case].download_url }}'>{{ cases[case].case_name }}</a> </h4>
+		<li> Date filed: {{ cases[case].date_filed }} </li>
+
+		{% if(cases[case].check_matches()) %}
+			<li>No matches.</li>
+		{% endif %}
+
+		{% for term in search_terms %}
+			{% if cases[case].matches[term] %}
+				<li>{{ term }}: </li>
+				<ul>
+					{% for match in cases[case].matches[term] %}
+						<li>"...{{ cases[case].opinion_text[match[0]-150:match[1]+150] }}..."</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endfor %}
+		{% endfor %}
+	</ul>	
+</body>
+</html>
