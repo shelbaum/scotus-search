@@ -44,7 +44,8 @@
 	<ul>
 		{% for case in cases %}
 		<h4> Case name: <a href='{{ cases[case].download_url }}'>{{ cases[case].case_name }}</a> </h4>
-		<li> Date filed: {{ cases[case].date_filed }} </li>
+		<h4> Date filed: {{ cases[case].date_filed }} </h4>
+		<h4>Search results:</h4>
 
 		{% if(cases[case].check_matches()) %}
 			<li>No matches.</li>
