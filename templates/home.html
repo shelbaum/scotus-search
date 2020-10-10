@@ -2,18 +2,23 @@
 <html>
 <head>
 	<title>Searching SCOTUS</title>
+
+	<link rel="stylesheet" href="/static/normalize.css">
+	<link rel="stylesheet" href="/static/skeleton.css">
+
 </head>
 <body>
-	<h1>Search SCOTUS Opinions for SLS Mentions</h1>
+	<div class="container">
+	<h1 class="title">Search SCOTUS Opinions for SLS Mentions</h1>
 	<div>
 			<form method="POST" action="">
 				{{ form.hidden_tag() }}
-				<fieldset class="form-group">
-					<div class="form-group">
+				<fieldset>
+					<div>
 						{{ form.start_date.label }}
 						{% if form.start_date.errors %}
 							{{ form.start_date }}
-							<div class="invalid-feedback">
+							<div>
 								{% for error in form.start_date.errors %}
 									<span> {{ error }} </span>
 								{% endfor %}
@@ -22,11 +27,11 @@
 							{{ form.start_date }}
 						{% endif %}				
 					</div>
-					<div class="form-group">
+					<div>
 						{{ form.end_date.label }}
 						{% if form.end_date.errors %}
 							{{ form.end_date }}
-							<div class="invalid-feedback">
+							<div>
 								{% for error in form.end_date.errors %}
 									<span> {{ error }} </span>
 								{% endfor %}
@@ -36,35 +41,44 @@
 						{% endif %}
 					</div>
 				</fieldset>
-				<div class="form-group">
+				<div class="button-primary">
 					{{ form.submit }}
 				</div>
 			</form>
 	</div>
 	<ul>
-		{% for case in cases %}
-		<h4> Case name: <a href='{{ cases[case].download_url }}'>{{ cases[case].case_name }}</a> </h4>
-		<h4> Date filed: {{ cases[case].date_filed }} </h4>
-		<h4>Search results:</h4>
-
-		{% if(cases[case].check_matches()) %}
-			<li>No matches.</li>
+		{% if cases %}
+			<h3>Opinions:</h3>
 		{% endif %}
 
-		{% for term in search_terms %}
-			{% if cases[case].matches[term] %}
-				<li>{{ term }}: </li>
-				<ul>
-					{% for match in cases[case].matches[term] %}
-						<li>"...{{ cases[case].opinion_text[match[0]-150:match[1]+150] }}..."</li>
-					{% endfor %}
-				</ul>
+		{% if not cases and request.method == 'POST' %}
+			<h4>No opinions in date range.</h4>
+		{% endif %}
+
+		{% for case in cases %}
+
+			<h5><a href='{{ cases[case].download_url }}'>{{ cases[case].case_name }}</a>, filed {{ cases[case].date_filed }}</h5>
+			<h5>Search results:</h5>
+
+			{% if(cases[case].check_matches()) %}
+				<li>No matches.</li>
 			{% endif %}
-		{% endfor %}
-		<hr>
-		<br>
+
+			{% for term in search_terms %}
+				{% if cases[case].matches[term] %}
+					<li style="font-weight:bold">{{ term }}: </li>
+					<ul>
+						{% for match in cases[case].matches[term] %}
+							<li>"...{{ cases[case].opinion_text[match[0]-150:match[1]+150].replace(term, '<b>' + term + '</b>')|safe }}..."</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			{% endfor %}
+			<hr>
+			<br>
 		{% endfor %}
 
-	</ul>	
+	</ul>
+	</div>	
 </body>
 </html>
