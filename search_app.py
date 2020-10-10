@@ -13,7 +13,7 @@ app.config['SECRET_KEY'] = '498deafffad03e9adc2900f80314f687'
 search_terms = ['Ablavsky', 'Alexander', 'Anderson', 'Babcock', 'Bankman', 'Banks', 'Belt', 'Brest', 
 'Brodie', 'Callahan', 'Casper', 'Cohen', '\bCole\b', 'Craswell', 'Daines', 'Dauber', 'Dickson', 
 'Donohue', 'Dwyer', 'Engstrom', 'Fisher\b', 'Ford', 'Franklin', 'Fried\b', 'Friedman', 'Gilson', 
-'Goldin', 'Goldstein', 'Gordon', 'Gould', 'Greely', 'Grey', 'Grundfest', 'Guttentag', 'Heller', 
+'Goldin', 'Goldstein', 'Gordon', 'Gould', 'Greely', 'Grey', 'Grundfest', 'Guttentag', 'Heller\b', 
 'Hensler', '\bHo\b', 'Honigsberg', 'Humphreys', 'Jensen', 'Karlan', 'Kelman', 'Kessler', 'Klausner', 'Koski', 
 'Lemley', 'MacCoun', 'Magill', 'Malone', 'Marshall', 'Martinez', 'McConnell', 'Melamed', 'Mello', 'Meyler', 'Milhaupt', 
 'Mills', 'Mitchell', 'Morantz', 'Nyarko', 'O’Connell', 'Ouellette', 'Persily', 'Polinsky', 'Rabin', 'Rhode', 'Schacter', 
@@ -48,4 +48,4 @@ def home():
 	return render_template('home.html', form=form, cases=cases, search_terms=search_terms)
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug="true")
