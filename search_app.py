@@ -20,7 +20,7 @@ search_terms = ['Ablavsky', 'Alexander', 'Anderson', 'Babcock', 'Bankman', 'Bank
 'Simon', 'Sinnar', 'Sivas', 'Sklansky', 'Sonne', 'Spaulding', 'Srikantiah', 'Strnad', 'Studdert', 'Sykes', 
 'Thompson', 'Triantis', 'Tyler', 'Schewick', 'Wald\b', 'Weiner', 'Weisberg', 'Williams', 'Zambrano', 'Broyde', 
 'Bertran', 'Cuéllar', 'Feingold', 'Ferrell', '\bFina\b', 'Fletcher', 'Hemel', 'Hodrick', 'Huq', 'Mack\b', 'Perdomo', 
-'Schaack', 'Welton', 'Stanford', 'Stan\.', 'brief\b', 'reply', 'response', 'amicus', 'CA10']
+'Schaack', 'Welton', 'Stanford', 'Stan\.', '[Bb]rief\b', '[Rr]eply', '[Rr]esponse', '[Aa]micus', 'CA10']
 
 class DateForm(FlaskForm):
 	start_date = DateField("From: ", format='%Y-%m-%d', validators=[DataRequired()])
