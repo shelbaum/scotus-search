@@ -64,7 +64,7 @@
 				<li>No matches.</li>
 			{% endif %}
 
-			{% for term in search_terms %}
+			{% for term in cases[case].matches %}
 				{% if cases[case].matches[term] %}
 					<li style="font-weight:bold">{{ term }}: </li>
 					<ul>
