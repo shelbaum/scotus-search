@@ -23,7 +23,7 @@ def searchopinions(search_terms, start_date, end_date=''):
             self.opinion_url = opinion_url
             self.opinion_text = ''
             self.download_url = ''
-            self.matches = dict.fromkeys(search_terms)
+            self.matches = {}
         
         def check_matches(self):
             return all([not elem for elem in self.matches.values()])
@@ -47,10 +47,11 @@ def searchopinions(search_terms, start_date, end_date=''):
         cases[case].download_url = r['download_url']
         
         for term in search_terms:
-            cases[case].matches[term] = []
             match_objects = re.finditer(term, cases[case].opinion_text)
             for match in match_objects:
-                cases[case].matches[term].append(match.span())
+                if not match.group() in cases[case].matches:
+                    cases[case].matches[match.group()] = []
+                cases[case].matches[match.group()].append(match.span())
           
     # Each Case object now contains metadata about the case, the opinion text (opinion, concurrences, and dissents all in one string),
     # and the indexes of all matches for each term in list
