@@ -19,7 +19,7 @@ search_terms = ['Ablavsky', 'Alexander', 'Anderson', 'Babcock', 'Bankman', 'Bank
 'Mills', 'Mitchell', 'Morantz', 'Nyarko', 'O’Connell', 'Ouellette', 'Persily', 'Polinsky', 'Rabin', 'Rhode', 'Schacter', 
 'Simon', 'Sinnar', 'Sivas', 'Sklansky', 'Sonne', 'Spaulding', 'Srikantiah', 'Strnad', 'Studdert', 'Sykes', 
 'Thompson', 'Triantis', 'Tyler', 'Schewick', 'Wald\\b', 'Weiner', 'Weisberg', 'Williams', 'Zambrano', 'Broyde', 
-'Bertran', 'Cuéllar', 'Feingold', 'Ferrell', '\\bFina\\b', 'Fletcher', 'Hemel', 'Hodrick', 'Huq', 'Mack\b', 'Perdomo', 
+'Bertran', 'Cu[ée]llar', 'Feingold', 'Ferrell', '\\bFina\\b', 'Fletcher', 'Hemel', 'Hodrick', 'Huq', 'Mack\b', 'Perdomo', 
 'Schaack', 'Welton', 'Stanford', 'Stan\.', '[Rr]eply', '\\b[Rr]esponse\\b', '[Aa]micus', '[Bb]rief\\b', 'CA10']
 
 class DateForm(FlaskForm):
