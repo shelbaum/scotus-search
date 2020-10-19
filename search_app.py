@@ -12,15 +12,15 @@ app.config['SECRET_KEY'] = '498deafffad03e9adc2900f80314f687'
 
 search_terms = ['Ablavsky', 'Alexander', 'Anderson', 'Babcock', 'Bankman', 'Banks', 'Belt', 'Brest', 
 'Brodie', 'Callahan', 'Casper', 'Cohen', '\\bCole\\b', 'Craswell', 'Daines', 'Dauber', 'Dickson', 
-'Donohue', 'Dwyer', 'Engstrom', 'Fisher\\b', 'Ford', 'Franklin', 'Fried\\b', 'Friedman', 'Gilson', 
+'Donohue', 'Dwyer', 'Engstrom', 'Fisher\\b', 'Fletcher', 'Ford', 'Franklin', 'Fried\\b', 'Friedman', 'Gilson', 
 'Goldin', 'Goldstein', 'Gordon', 'Gould', 'Greely', 'Grey', 'Grundfest', 'Guttentag', 'Heller\\b', 
 'Hensler', '\\bHo\\b', 'Honigsberg', 'Humphreys', 'Jensen', 'Karlan', 'Kelman', 'Kessler', 'Klausner', 'Koski', 
 'Lemley', 'MacCoun', 'Magill', 'Malone', 'Marshall', 'Martinez', 'McConnell', 'Melamed', 'Mello', 'Meyler', 'Milhaupt', 
 'Mills', 'Mitchell', 'Morantz', 'Nyarko', 'O’Connell', 'Ouellette', 'Persily', 'Polinsky', 'Rabin', 'Rhode', 'Schacter', 
 'Simon', 'Sinnar', 'Sivas', 'Sklansky', 'Sonne', 'Spaulding', 'Srikantiah', 'Strnad', 'Studdert', 'Sykes', 
-'Thompson', 'Triantis', 'Tyler', 'Schewick', 'Wald\\b', 'Weiner', 'Weisberg', 'Williams', 'Zambrano', 'Broyde', 
-'Bertran', 'Cu[ée]llar', 'Feingold', 'Ferrell', '\\bFina\\b', 'Fletcher', 'Hemel', 'Hodrick', 'Huq', 'Mack\b', 'Perdomo', 
-'Schaack', 'Welton', 'Stanford', 'Stan\.', '[Rr]eply', '\\b[Rr]esponse\\b', '[Aa]micus', '[Bb]rief\\b', 'CA10']
+'Thompson', 'Triantis', 'Tyler', 'Schewick', 'Wald\\b', 'Weiner', 'Weisberg', 'Williams', 'Zambrano', 'Berman', 
+'Cu[ée]llar', 'Fadel', '\\bFina\\b', 'Hodrick', 'Perdomo', 'Schaack', 'Welton', 'Stanford', 'Stan\.', 'Reply', 
+'Response\\b', 'Amicus', 'Brief\\b', 'CA10']
 
 class DateForm(FlaskForm):
 	start_date = DateField("From: ", format='%Y-%m-%d', validators=[DataRequired()])
