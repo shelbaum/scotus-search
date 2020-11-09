@@ -40,12 +40,13 @@ class DateForm(FlaskForm):
 @app.route('/', methods = ['POST', 'GET'])
 def home(): 
 	form = DateForm()
-	results = request.form
-	start_date = str(results.get("start_date"))
-	end_date = str(results.get("end_date"))
-	cases = searchopinions.searchopinions(search_terms, start_date, end_date)
+	
+	try:
+		results = request.form
+		start_date = str(results.get("start_date"))
+		end_date = str(results.get("end_date"))
+		cases = searchopinions.searchopinions(search_terms, start_date, end_date)
 
-	return render_template('home.html', form=form, cases=cases, search_terms=search_terms)
-
-if __name__ == '__main__':
-	app.run(debug="true")
+		return render_template('home.html', form=form, cases=cases, search_terms=search_terms)
+	except:
+		return render_template('home.html', form=form, cases=[], search_terms=search_terms)
