@@ -10,6 +10,12 @@
   outline: none;
   font-size: 15px;
 }
+.collapsible a {
+  color: #157A99; 
+}
+.collapsible a:hover {
+  color: #0F576D; 
+}
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
