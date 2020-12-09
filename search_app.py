@@ -25,7 +25,7 @@ search_terms = ['Ablavsky', 'Alexander', 'Anderson', 'Babcock', 'Bankman', 'Bank
 class DateForm(FlaskForm):
 	start_date = DateField("From: ", format='%Y-%m-%d', validators=[DataRequired()])
 	end_date = DateField("To: ", format='%Y-%m-%d', default=date.today())
-	submit = SubmitField('Submit')
+	submit = SubmitField('Search')
 
 	# def validate_dates(start_date, end_date):
 	# 	start_date_obj=strptime(start_date, '%Y-%m-%d')
