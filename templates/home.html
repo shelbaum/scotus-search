@@ -3,14 +3,18 @@
 <head>
 	<title>Searching SCOTUS</title>
 
-	<link rel="stylesheet" href="/static/normalize.css">
-	<link rel="stylesheet" href="/static/skeleton.css">
+<link rel="stylesheet" href="/static/normalize.css">
+<link rel="stylesheet" href="/static/skeleton.css">
+<link rel="stylesheet" href="/static/custom.css">
 
 </head>
 <body>
 	<div class="container">
 	<h1 class="title">Search SCOTUS Opinions for SLS Mentions</h1>
-	<p>*Please do not search large date ranges - it will only return up to 20 cases anyway*</p>
+	<p>Please do not search large date ranges - it will only return up to 20 cases anyway. If you get 20 results, or if you know there are more than 20 cases in the range you're searching, break up your search into smaller subsets of the range to ensure you get all cases.</p>
+
+	<p>This tool does not search the text of briefs. If the search results indicate a brief has been cited, pull that brief from <a href="https://www.scotusblog.com/">SCOTUSblog</a> to check if it was filed by or on behalf of any SLS faculty or clinics.</p>
+	
 	<div>
 			<form method="POST" action="">
 				{{ form.hidden_tag() }}
@@ -49,7 +53,7 @@
 	</div>
 	<ul>
 		{% if cases %}
-			<h3>Opinions:</h3>
+			<h3>Opinions ({{ cases|length }} results):</h3>
 		{% endif %}
 
 		{% if not cases and request.method == 'POST' %}
@@ -58,7 +62,9 @@
 
 		{% for case in cases %}
 
-			<h5><a href='{{ cases[case].download_url }}'>{{ cases[case].case_name }}</a>, filed {{ cases[case].date_filed }}</h5>
+			<h5 class="collapsible"><a href='{{ cases[case].download_url }}'>{{ cases[case].case_name }}</a>, filed {{ cases[case].date_filed }}</h5>
+			<div class="content">
+
 			<h5>Search results:</h5>
 
 			{% if(cases[case].check_matches()) %}
@@ -75,11 +81,30 @@
 					</ul>
 				{% endif %}
 			{% endfor %}
+			</div>
 			<hr>
-			<br>
 		{% endfor %}
 
 	</ul>
-	</div>	
+	</div>
+
+
+	<!-- Javascript for collapsible search results -->
+	<script>
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+	  coll[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var content = this.nextElementSibling;
+	    if (content.style.display === "block") {
+	      content.style.display = "none";
+	    } else {
+	      content.style.display = "block";
+	    }
+	  });
+	}
+	</script>	
 </body>
 </html>
