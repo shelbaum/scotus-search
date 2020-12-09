@@ -13,7 +13,7 @@ This Flask app searches Supreme Court opinions within a selected date range for 
 <h4>Everything else:</h4> 
 <b>Procfile</b> and <b>requirements.txt</b> are required to deploy the app on Heroku. They provide information that it needs for the initial setup. 
 
-The <b>static</b> folder contains CSS, which is just <a href="http://getskeleton.com/">Skeleton boilerplate</a> plus a little custom CSS to make the search results collapsible. 
+<p>The <b>static</b> folder contains CSS, which is just <a href="http://getskeleton.com/">Skeleton boilerplate</a> plus a little custom CSS to make the search results collapsible.</pP
 
 <h4>Maintaining the app:</h4>
 
