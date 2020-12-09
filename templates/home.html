@@ -20,6 +20,7 @@
 <body>
 	<div class="container">
 	<h1 class="title">Search SCOTUS Opinions for SLS Mentions</h1>
+	<div class="row">
 	<div class="one-half column">
 			<form method="POST" action="">
 				{{ form.hidden_tag() }}
@@ -62,6 +63,7 @@
 		<p>This tool searches across all opinions in a case, including dissents and concurrences. It doesn't (yet?) indicate the opinion or page number of a match. If you get a potential match, pull up the opinion PDF and use CTRL+F to identify the section containing the citation.</p>
 	
 		<p>This tool does not search the text of briefs. If the search results indicate a brief has been cited, pull that brief from <a href="https://www.scotusblog.com/">SCOTUSblog</a> to check if it was filed by or on behalf of any SLS faculty or clinics.</p>
+	</div>
 	</div>
 	<ul>
 		{% if cases %}
