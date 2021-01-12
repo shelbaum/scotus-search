@@ -2,7 +2,7 @@
 
 This Flask app searches Supreme Court opinions within a selected date range for mentions of SLS faculty members and student journals. It's currently deployed at https://scotus-search.herokuapp.com/. 
 
-####The important files:
+#### The important files:
 
 **searchopinions.py** contains the function for searching opinions. It connects to the CourtListener API, finds all opinions (including opinions on orders) in the given date range, searches for any instances of the terms in the list of search terms, and returns any opinions found along with the locations of any matches. 
 
@@ -10,12 +10,12 @@ This Flask app searches Supreme Court opinions within a selected date range for 
 
 **home.html** (in templates folder) is the html file on which all this displays. It doesn't look like a normal html file because it's a Flask template; all the stuff in curly brackets {{}} allows the app to dynamically generate html as the user searches, so that it displays the search form before the user searches, then displays the search results after on the same page. 
 
-####Everything else:
+#### Everything else:
 **Procfile** and **requirements.txt** are required to deploy the app on Heroku. They provide information that it needs for the initial setup.
 
 The **static** folder contains CSS, which is just [Skeleton boilerplate](http://getskeleton.com/) plus a little custom CSS to make the search results collapsible.
 
-####Maintaining the app:
+#### Maintaining the app:
 
 The maintainer will need to create a free CourtListener account to get an API Key. Once you have an account, you can find your API Key here: https://www.courtlistener.com/profile/api/. Enter that key in **searchopinions.py** (line 9, header = {'Authorization': 'Token ENTER_KEY_HERE'}). Don't enter it in **search_app.py** - there's a variable in there called app.config['SECRET_KEY'], which looks like it might be an API key, but it isn't and you don't need to change it (although nothing bad will happen if you do). 
 
@@ -29,7 +29,7 @@ The only part of this that needs to be updated on an ongoing basis is the list o
 
 These special search options work because the search function actually searches for each term as a regular expression - a pattern of characters described with special notation. I think the brackets and word boundary will be the only regular expression features needed, but if you'd like to learn more about them or craft more complex search terms, https://www.regular-expressions.info/ has an excellent tutorial and reference material. 
 
-####Weird Stuff
+#### Weird Stuff
 The opinion text provided by the CourtListener API is just one long string containing everything printed on the page - the main text, footnotes, headers, and footers - with no divisions between them. So if you get a result that's in a footnote, or near the end or beginning of a page, the snippet shown in the results will look a little weird. It might include something like "Cite as: 592 U. S. \____ (2020) 3 SOTOMAYOR, J., dissenting" in the middle of a sentence. That's because it just displays the matched term plus the 150 characters on either side - which might include the page header or part of the footnote on the preceding page.
 
 Right now, this tool will only return 20 opinions at a time. This is because it just looks at the first "page" of results from the CourtListener API. It could be expanded to look at all the results in a given date range, but then if someone accidentally entered a very large date range, it would be incredibly slow and may max out our query limit with CourtListener. Since it's incredibly unlikely that there will be more than 20 results in the date ranges we're concerned with, I suggest leaving this as is, but if you do get 20 results, search CourtListener itself to see if there are actually more than 20, and search for portions of the date range in this app to get them all.
