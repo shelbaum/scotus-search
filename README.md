@@ -15,7 +15,7 @@ This Flask app searches Supreme Court opinions within a selected date range for 
 
 The **static** folder contains CSS, which is just [Skeleton boilerplate](http://getskeleton.com/) plus a little custom CSS to make the search results collapsible.
 
-### Maintaining the app:
+### Setting up the app:
 
 The maintainer will need to create a free CourtListener account to get an API Key. Once you have an account, you can find your API Key here: https://www.courtlistener.com/profile/api/. Enter that key in **searchopinions.py** (line 9, `header = {'Authorization': 'Token ENTER_KEY_HERE'}`). Don't enter it in **search_app.py** - there's a variable in there called `app.config['SECRET_KEY']`, which looks like it might be an API key, but it isn't and you don't need to change it (although nothing bad will happen if you do). 
 
@@ -26,6 +26,7 @@ If you want to deploy it on Heroku, create a free Heroku account and a GitHub ac
 if __name__ == '__main__':
 	app.run(debug="true")
 ```
+### Maintaining the app:
 
 The only part of this that needs to be updated on an ongoing basis is the list of search terms in **search-app.py**. The terms are case-sensitive and must be enclosed in quotation marks and separated with commas. Two special notes:
 * If you'd like to search for a name with and without a diacritic, or both capitalized and uncapitalized, you can enclose the possible characters in brackets: e.g. "Cu[eé]llar" will return both "Cuellar" and "Cuéllar", and "[Bb]rief" will return both "Brief" and "brief".
