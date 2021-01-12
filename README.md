@@ -17,7 +17,7 @@ The **static** folder contains CSS, which is just [Skeleton boilerplate](http://
 
 ### Maintaining the app:
 
-The maintainer will need to create a free CourtListener account to get an API Key. Once you have an account, you can find your API Key here: https://www.courtlistener.com/profile/api/. Enter that key in **searchopinions.py** (line 9, `header = {'Authorization': 'Token ENTER_KEY_HERE'}`). Don't enter it in **search_app.py** - there's a variable in there called app.config['SECRET_KEY'], which looks like it might be an API key, but it isn't and you don't need to change it (although nothing bad will happen if you do). 
+The maintainer will need to create a free CourtListener account to get an API Key. Once you have an account, you can find your API Key here: https://www.courtlistener.com/profile/api/. Enter that key in **searchopinions.py** (line 9, `header = {'Authorization': 'Token ENTER_KEY_HERE'}`). Don't enter it in **search_app.py** - there's a variable in there called `app.config['SECRET_KEY']`, which looks like it might be an API key, but it isn't and you don't need to change it (although nothing bad will happen if you do). 
 
 If you want to deploy it on Heroku, create a free Heroku account and a GitHub account; create a new GitHub repository with all these files; create a new Heroku app from your dashboard; and in the Heroku app edit page, under the Deploy tab, connect to your GitHub account, enter the repository name, then click on "Deploy Branch" at the bottom of the page. You may want to select "Enable Automatic Deploys," which will automatically redeploy the app every time you commit any changes to the `main` branch of the repository. Otherwise, you'll need to manually deploy the app for any updates to be reflected. 
 
