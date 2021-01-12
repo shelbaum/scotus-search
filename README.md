@@ -11,7 +11,7 @@ This Flask app searches Supreme Court opinions within a selected date range for 
 **home.html** (in templates folder) is the html file on which all this displays. It doesn't look like a normal html file because it's a Flask template; all the stuff in curly brackets {{}} allows the app to dynamically generate html as the user searches, so that it displays the search form before the user searches, then displays the search results after on the same page. 
 
 ### Everything else:
-**Procfile** and **requirements.txt** are required to deploy the app on Heroku. They provide information that it needs for the initial setup.
+**Procfile** and **requirements.txt** are required to deploy the app on Heroku. They provide information that it needs for the initial setup. You should not edit these. 
 
 The **static** folder contains CSS, which is just [Skeleton boilerplate](http://getskeleton.com/) plus a little custom CSS to make the search results collapsible.
 
