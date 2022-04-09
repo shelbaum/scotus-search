@@ -6,7 +6,7 @@ import re
 def searchopinions(search_terms, start_date, end_date=''):
 
     cases = {}
-    header = {'Authorization': 'Token 472e34f1c59af4a121cbfd333ac8d262223810a1'}
+    header = {'Authorization': 'Token YOUR API KEY HERE'}
     url_parts = ['https://www.courtlistener.com/api/rest/v3/clusters/?date_filed__gte=','&date_filed__lte=','&docket__court__id=scotus&fields=id,case_name,date_filed,sub_opinions']
     if end_date:
         url = url_parts[0] + start_date + url_parts[1] + end_date + url_parts[2]
