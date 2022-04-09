@@ -1,30 +1,20 @@
 # scotus-search
 
-This Flask app searches Supreme Court opinions within a selected date range for mentions of SLS faculty members and student journals. It's currently deployed at https://scotus-search.herokuapp.com/. 
+This Flask app searches Supreme Court opinions within a selected date range for a preset list of search terms. It was originally created to find citations to Stanford Law School faculty and journals, but you can edit the list of terms in **search_app.py** to adapt it to your own needs. It's currently deployed at https://scotus-search.herokuapp.com/. 
 
 ### The important files:
 
-**searchopinions.py** contains the function for searching opinions. It connects to the CourtListener API, finds all opinions (including opinions on orders) in the given date range, searches for any instances of the terms in the list of search terms, and returns any opinions found along with the locations of any matches. 
+**searchopinions.py** contains the function for searching opinions. It connects to the CourtListener API, finds all opinions (including opinions on orders) in the given date range, searches for any instances of the terms in the list of search terms, and returns any opinions found along with the locations of any matches. You will need to get your own CourtListener account and enter your API key on line 9 here.
 
 **search_app.py** is the app itself. It contains the list of search terms, calls the function in searchopinions.py (providing as parameters the list of search terms and the dates seleted by the user) and outputs the results to the home.html template.
 
-**home.html** (in templates folder) is the html file on which all this displays. It doesn't look like a normal html file because it's a Flask template; all the stuff in curly brackets {{}} allows the app to dynamically generate html as the user searches, so that it displays the search form before the user searches, then displays the search results after on the same page. 
+**home.html** (in templates folder) is the html file on which all this displays. It is a Flask template; the stuff in curly brackets {{}} allows the app to dynamically generate html as the user searches, so that it displays the search form before the user searches, then displays the search results after on the same page. 
 
 ### Everything else:
-**Procfile** and **requirements.txt** are required to deploy the app on Heroku. They provide information that it needs for the initial setup. You should not edit these. 
+**Procfile** and **requirements.txt** are required to deploy the app on Heroku, which was its original home. They provide information that it needs for the initial setup. You should not edit these. 
 
 The **static** folder contains CSS, which is just [Skeleton boilerplate](http://getskeleton.com/) plus a little custom CSS to make the search results collapsible.
 
-### Setting up the app:
-
-The maintainer will need to create a free CourtListener account to get an API Key. Once you have an account, you can find your API Key here: https://www.courtlistener.com/profile/api/. Enter that key in **searchopinions.py** (line 9, `header = {'Authorization': 'Token ENTER_KEY_HERE'}`). Don't enter it in **search_app.py** - there's a variable in there called `app.config['SECRET_KEY']`, which looks like it might be an API key, but it isn't and you don't need to change it (although nothing bad will happen if you do). 
-
-If you want to deploy it on Heroku, create a free Heroku account and a GitHub account; create a new GitHub repository with all these files; create a new Heroku app from your dashboard; and in the Heroku app edit page, under the Deploy tab, connect to your GitHub account, enter the repository name, then click on "Deploy Branch" at the bottom of the page. You may want to select "Enable Automatic Deploys," which will automatically redeploy the app every time you commit any changes to the `main` branch of the repository. Otherwise, you'll need to manually deploy the app for any updates to be reflected. 
-
-*Note: Making many edits/commits in a row may result in an error if you have Automatic Deploys turned on. If you're making any changes or updates other than just updating the search terms list or other simple edits that you don't need to test, you should test your changes on a version run on a local server and only deploy your final version to Heroku. [This page](https://python-adv-web-apps.readthedocs.io/en/latest/flask.html) has good instructions for getting your local server up; you'll need to [install Python](https://www.python.org/downloads/) first. For any changes you make to be reflected live when you're running it on a local server - i.e., so that you can just refresh the browser after saving your changes instead of relaunching the whole thing - add these two lines of code to the end of search_app.py. Be sure to indent the second line with a single tab:* 
-```
-if __name__ == '__main__':
-	app.run(debug="true")
 ```
 ### Maintaining the app:
 
@@ -32,7 +22,7 @@ The only part of this that needs to be updated on an ongoing basis is the list o
 * If you'd like to search for a name with and without a diacritic, or both capitalized and uncapitalized, you can enclose the possible characters in brackets: e.g. "Cu[eé]llar" will return both "Cuellar" and "Cuéllar", and "[Bb]rief" will return both "Brief" and "brief".
 * If you have a name that might appear at the start of other words (e.g., "Ho" appears in "House", "Honor",...), put "\\\b" at the end of the term (e.g. "Ho\\\b"). This searches for those characters followed by a word boundary, like a space, comma, or period. You can also put this at the beginning of the word if needed, but since the terms are case-sensitive, that probably won't be necessary (e.g., "Ho" will <i>not</i> match "ghost").
 
-These special search options work because the search function actually searches for each term as a regular expression - a pattern of characters described with special notation. I think the brackets and word boundary will be the only regular expression features needed, but if you'd like to learn more about them or craft more complex search terms, https://www.regular-expressions.info/ has an excellent tutorial and reference material. 
+These search options work because the search function reads each term as a regular expression - a pattern of characters described with special notation. The brackets and word boundary should be the only regular expression features needed, but if you'd like to learn more about them or craft more complex search terms, https://www.regular-expressions.info/ has an excellent tutorial and reference material. 
 
 ### Weird Stuff
 The opinion text provided by the CourtListener API is just one long string containing everything printed on the page - the main text, footnotes, headers, and footers - with no divisions between them. So if you get a result that's in a footnote, or near the end or beginning of a page, the snippet shown in the results will look a little weird. It might include something like "Cite as: 592 U. S. \____ (2020) 3 SOTOMAYOR, J., dissenting" in the middle of a sentence. That's because it just displays the matched term plus the 150 characters on either side - which might include the page header or part of the footnote on the preceding page. If you'd like a larger snippet to be shown, edit line 93 in **home.html** accordingly; e.g., changing it to read `...[match[0]-200:match[1]+200]...` will make it show the 200 characters on either side of the term. 
