@@ -15,7 +15,6 @@ This Flask app searches Supreme Court opinions within a selected date range for 
 
 The **static** folder contains CSS, which is just [Skeleton boilerplate](http://getskeleton.com/) plus a little custom CSS to make the search results collapsible.
 
-```
 ### Maintaining the app:
 
 The only part of this that needs to be updated on an ongoing basis is the list of search terms in **search-app.py**. The terms are case-sensitive and must be enclosed in quotation marks and separated with commas. Two special notes:
