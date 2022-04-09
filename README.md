@@ -1,6 +1,6 @@
 # scotus-search
 
-This Flask app searches Supreme Court opinions within a selected date range for a preset list of search terms. It was originally created to find citations to Stanford Law School faculty and journals, but you can edit the list of terms in **search_app.py** to adapt it to your own needs. It's currently deployed at https://scotus-search.herokuapp.com/. 
+This Flask app searches Supreme Court opinions within a selected date range for a preset list of search terms. It was originally created to find citations to Stanford Law School faculty and journals, but you can edit the list of terms in **search_app.py** to adapt it to your own needs. 
 
 ### The important files:
 
